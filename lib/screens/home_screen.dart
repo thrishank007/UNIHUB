@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unihub/data/bottom_nav.dart';
-import 'package:unihub/pages/community_page.dart';
+import 'package:unihub/pages/remainder_page.dart';
 import 'package:unihub/pages/scan_notes.dart';
 import 'package:unihub/pages/study_planner.dart';
 
@@ -248,7 +248,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CommunityPage())),
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => RemainderPage())),
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
