@@ -1,76 +1,103 @@
 import 'package:flutter/material.dart';
-import 'package:unihub/pages/settings_page.dart';
 import 'package:unihub/screens/agent_screen.dart';
 import 'package:unihub/screens/home_screen.dart';
-import 'package:unihub/screens/profile_screen.dart';
+import 'package:unihub/pages/study_planner.dart';
 
-class BottomNav extends StatefulWidget {
+class BottomNav extends StatelessWidget {
   const BottomNav({super.key});
 
   @override
-  State<BottomNav> createState() => _BottomNavState();
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(220, 30, 30, 40),
+        borderRadius: BorderRadius.circular(30),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.3),
+            blurRadius: 10,
+            offset: const Offset(0, 5),
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            _NavItem(
+              icon: Icons.home_rounded,
+              label: 'Home',
+              onTap: () => Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const HomeScreen()),
+              ),
+            ),
+            _NavItem(
+              icon: Icons.smart_toy_rounded,
+              label: 'AI Chat',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AgentScreen()),
+              ),
+            ),
+            _NavItem(
+              icon: Icons.calendar_month_rounded,
+              label: 'Planner',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const StudyPlanner()),
+              ),
+            ),
+            _NavItem(
+              icon: Icons.person_rounded,
+              label: 'Profile',
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Profile - Coming soon!')),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
-class _BottomNavState extends State<BottomNav> {
+class _NavItem extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+
+  const _NavItem({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+  });
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: SizedBox(
-          width: 300,
-          child: FloatingActionButton(
-            onPressed: () {},
-            backgroundColor: const Color.fromARGB(186, 69, 72, 79),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HomeScreen()));
-                    },
-                    style: ButtonStyle(
-                      iconColor: WidgetStatePropertyAll(Colors.blueGrey),
-                    ),
-                    hoverColor: Colors.white,
-                    icon: Icon(Icons.home)),
-                IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const AgentScreen()));
-                    },
-                    style: ButtonStyle(
-                        iconColor: WidgetStatePropertyAll(Colors.blueGrey)),
-                    hoverColor: Colors.white,
-                    icon: Icon(Icons.map)),
-                IconButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage()));
-                    },
-                    style: ButtonStyle(
-                        iconColor: WidgetStatePropertyAll(Colors.blueGrey)),
-                    hoverColor: Colors.white,
-                    icon: Icon(Icons.settings)),
-                IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ProfileScreen(),
-                          ));
-                    },
-                    style: ButtonStyle(
-                        iconColor: WidgetStatePropertyAll(Colors.blueGrey)),
-                    hoverColor: Colors.white,
-                    icon: Icon(Icons.person)),
-              ],
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, color: Colors.white70, size: 26),
+            const SizedBox(height: 4),
+            Text(
+              label,
+              style: const TextStyle(
+                color: Colors.white70,
+                fontSize: 11,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
