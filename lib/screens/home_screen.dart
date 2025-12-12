@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unihub/data/bottom_nav.dart';
+import 'package:unihub/pages/community_page.dart';
 import 'package:unihub/pages/scan_notes.dart';
 import 'package:unihub/pages/study_planner.dart';
 
@@ -246,41 +247,44 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/grid_3.png'),
-                        fit: BoxFit.cover,
+                  GestureDetector(
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CommunityPage())),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/grid_3.png'),
+                          fit: BoxFit.cover,
+                        ),
+                        borderRadius: BorderRadius.circular(35.0),
                       ),
-                      borderRadius: BorderRadius.circular(35.0),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 10),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: CircleAvatar(radius: 20.0),
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: 10),
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: CircleAvatar(radius: 20.0),
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Smart Remainders',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
+                            Text(
+                              'Smart Remainders',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            'Never miss important deadlines or study sessions with AI-powered reminders that adapt to your schedule.',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
+                            const SizedBox(height: 10),
+                            Text(
+                              'Never miss important deadlines or study sessions with AI-powered reminders that adapt to your schedule.',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
