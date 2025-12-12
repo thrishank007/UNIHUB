@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unihub/screens/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -91,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         children: [
                           Radio(
                             value: 'Remember Me',
-                            fillColor: WidgetStatePropertyAll(Colors.white),
+                            fillColor: WidgetStatePropertyAll(Colors.white), groupValue: '', onChanged: (String? value) {  },
                           ),
                           Text(
                             'Remember Me',
@@ -111,7 +112,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context,  MaterialPageRoute(builder: (context) => HomeScreen()));
+                        },
 
                         style: ButtonStyle(
                           backgroundColor: WidgetStatePropertyAll(

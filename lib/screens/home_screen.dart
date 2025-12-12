@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:unihub/screens/agent_screen.dart';
+import 'package:unihub/screens/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -72,7 +74,6 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.all(18.0),
-
               child: TextFormField(
                 textCapitalization: TextCapitalization.none,
                 keyboardType: TextInputType.text,
@@ -80,7 +81,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   fillColor: Colors.black,
                   prefixIcon: Icon(Icons.search, color: Colors.white),
                   label: Text('Search', style: TextStyle(color: Colors.white)),
-
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(50.0),
                   ),
@@ -88,65 +88,65 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             const SizedBox(height: 5),
-            Row(
-              children: [
-                Text(
-                  'Focus Room',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24.0,
-                  ),
-                ),
-                const Spacer(),
-                OutlinedButton(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(
-                      const Color.fromARGB(215, 46, 46, 46),
-                    ),
-                  ),
-                  child: Text('See all', style: TextStyle(color: Colors.white)),
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Padding(
-              padding: EdgeInsets.all(12.0),
-              child: Container(
-                width: double.infinity,
-                height: 150,
+            // Row(
+            //   children: [
+            //     Text(
+            //       'Focus Room',
+            //       style: TextStyle(
+            //         color: Colors.white,
+            //         fontWeight: FontWeight.bold,
+            //         fontSize: 24.0,
+            //       ),
+            //     ),
+            //     const Spacer(),
+            //     OutlinedButton(
+            //       onPressed: () {},
+            //       style: ButtonStyle(
+            //         backgroundColor: WidgetStatePropertyAll(
+            //           const Color.fromARGB(215, 46, 46, 46),
+            //         ),
+            //       ),
+            //       child: Text('See all', style: TextStyle(color: Colors.white)),
+            //     ),
+            //   ],
+            // ),
+            // const SizedBox(height: 10),
+            // Padding(
+            //   padding: EdgeInsets.all(12.0),
+            //   child: Container(
+            //     width: double.infinity,
+            //     height: 150,
 
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(175, 12, 66, 111),
-                  borderRadius: BorderRadius.circular(35.0),
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(12.0),
-                      child: Text(
-                        'Focus Room 1',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.forward),
-                      style: ButtonStyle(
-                        iconColor: WidgetStatePropertyAll(Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            //     decoration: BoxDecoration(
+            //       color: const Color.fromARGB(175, 12, 66, 111),
+            //       borderRadius: BorderRadius.circular(35.0),
+            //     ),
+            //     child: Row(
+            //       crossAxisAlignment: CrossAxisAlignment.start,
+            //       children: [
+            //         Padding(
+            //           padding: EdgeInsets.all(12.0),
+            //           child: Text(
+            //             'Focus Room 1',
+            //             style: TextStyle(
+            //               color: Colors.white,
+            //               fontSize: 18,
+            //               fontWeight: FontWeight.bold,
+            //             ),
+            //           ),
+            //         ),
+            //         const Spacer(),
+            //         IconButton(
+            //           onPressed: () {},
+            //           icon: Icon(Icons.forward),
+            //           style: ButtonStyle(
+            //             iconColor: WidgetStatePropertyAll(Colors.white),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
             const SizedBox(height: 10),
             Expanded(
               child: GridView.count(
@@ -174,11 +174,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             alignment: Alignment.topLeft,
                             child: Padding(
                               padding: EdgeInsets.all(8.0),
-                              child: CircleAvatar(radius: 20.0),
+                              child: CircleAvatar(
+                                radius: 20.0,
+                              ),
                             ),
                           ),
                           Text(
-                            'Set daily smart remainder',
+                            'AI Study Planner',
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -187,7 +189,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           const SizedBox(height: 10),
                           Text(
-                            'Stay on track with daily alerts.',
+                            'Automatically creates and manages your study schedule with smart conflict detection.',
                             style: TextStyle(color: Colors.white),
                           ),
                         ],
@@ -216,7 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           Text(
-                            'Detailed session summary',
+                            'Smart Notes Scanner',
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -225,7 +227,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           const SizedBox(height: 10),
                           Text(
-                            'Quick insights of your daily progress.',
+                            'Scan handwritten notes and convert them into organized, editable digital text with ease.',
                             style: TextStyle(color: Colors.white),
                           ),
                         ],
@@ -254,7 +256,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           Text(
-                            'Send quick feedback',
+                            'Smart Remainders',
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -263,7 +265,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           const SizedBox(height: 10),
                           Text(
-                            'See who pinned you now',
+                            'Never miss important deadlines or study sessions with AI-powered reminders that adapt to your schedule.',
                             style: TextStyle(color: Colors.white),
                           ),
                         ],
@@ -292,7 +294,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           Text(
-                            'Set daily smart remainder',
+                            'SmartPrep Analyzer',
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -301,7 +303,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           const SizedBox(height: 10),
                           Text(
-                            'Stay on track with daily alerts',
+                            'Predicts whats likely to appear - So students can focus smart.',
                             style: TextStyle(color: Colors.white),
                           ),
                         ],
@@ -322,9 +324,47 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Icon(Icons.home),
-                        Icon(Icons.person),
-                        Icon(Icons.map),
+                        IconButton(
+                            onPressed: () {},
+                            style: ButtonStyle(
+                              iconColor:
+                                  WidgetStatePropertyAll(Colors.blueGrey),
+                            ),
+                            hoverColor: Colors.white,
+                            icon: Icon(Icons.home)),
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const AgentScreen()));
+                            },
+                            style: ButtonStyle(
+                                iconColor:
+                                    WidgetStatePropertyAll(Colors.blueGrey)),
+                            hoverColor: Colors.white,
+                            icon: Icon(Icons.map)),
+                        IconButton(
+                            onPressed: () {},
+                            style: ButtonStyle(
+                                iconColor:
+                                    WidgetStatePropertyAll(Colors.blueGrey)),
+                            hoverColor: Colors.white,
+                            icon: Icon(Icons.settings)),
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ProfileScreen(),
+                                  ));
+                            },
+                            style: ButtonStyle(
+                                iconColor:
+                                    WidgetStatePropertyAll(Colors.blueGrey)),
+                            hoverColor: Colors.white,
+                            icon: Icon(Icons.person)),
                       ],
                     ),
                   ),
