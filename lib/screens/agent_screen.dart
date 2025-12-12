@@ -48,11 +48,15 @@ class _AgentScreenState extends State<AgentScreen> {
                   filled: true,
                   fillColor: const Color.fromARGB(255, 85, 86, 91),
                   hint: Text('Ask UniHub AI'),
-                  
+                  prefixIcon: IconButton(onPressed: (){}, icon: Icon(Icons.add, color: Colors.white,),),
+                  suffixIcon: IconButton(onPressed: (){}, icon: Icon(Icons.send, color: Colors.white,),),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16.0),
+                    borderSide: BorderSide.none,
+                  )
                 ),
               ),
-            ),
-      
+            ), 
           ),
         ],
       ),
