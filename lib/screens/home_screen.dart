@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unihub/data/bottom_nav.dart';
+import 'package:unihub/pages/community_page.dart';
 import 'package:unihub/pages/remainder_page.dart';
 import 'package:unihub/pages/scan_notes.dart';
 import 'package:unihub/pages/study_planner.dart';
@@ -90,65 +91,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             const SizedBox(height: 5),
-            // Row(
-            //   children: [
-            //     Text(
-            //       'Focus Room',
-            //       style: TextStyle(
-            //         color: Colors.white,
-            //         fontWeight: FontWeight.bold,
-            //         fontSize: 24.0,
-            //       ),
-            //     ),
-            //     const Spacer(),
-            //     OutlinedButton(
-            //       onPressed: () {},
-            //       style: ButtonStyle(
-            //         backgroundColor: WidgetStatePropertyAll(
-            //           const Color.fromARGB(215, 46, 46, 46),
-            //         ),
-            //       ),
-            //       child: Text('See all', style: TextStyle(color: Colors.white)),
-            //     ),
-            //   ],
-            // ),
-            // const SizedBox(height: 10),
-            // Padding(
-            //   padding: EdgeInsets.all(12.0),
-            //   child: Container(
-            //     width: double.infinity,
-            //     height: 150,
-
-            //     decoration: BoxDecoration(
-            //       color: const Color.fromARGB(175, 12, 66, 111),
-            //       borderRadius: BorderRadius.circular(35.0),
-            //     ),
-            //     child: Row(
-            //       crossAxisAlignment: CrossAxisAlignment.start,
-            //       children: [
-            //         Padding(
-            //           padding: EdgeInsets.all(12.0),
-            //           child: Text(
-            //             'Focus Room 1',
-            //             style: TextStyle(
-            //               color: Colors.white,
-            //               fontSize: 18,
-            //               fontWeight: FontWeight.bold,
-            //             ),
-            //           ),
-            //         ),
-            //         const Spacer(),
-            //         IconButton(
-            //           onPressed: () {},
-            //           icon: Icon(Icons.forward),
-            //           style: ButtonStyle(
-            //             iconColor: WidgetStatePropertyAll(Colors.white),
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
             const SizedBox(height: 10),
             Expanded(
               child: GridView.count(
@@ -329,7 +271,35 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            BottomNav(),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: GestureDetector(
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>CommunityPage())),
+                child: Container(
+                  width: double.infinity,
+                  height: 100,     
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(175, 12, 66, 111),
+                    borderRadius: BorderRadius.circular(35.0),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Community',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+             BottomNav(),
           ],
         ),
       ),

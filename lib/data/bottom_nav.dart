@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unihub/pages/settings_page.dart';
 import 'package:unihub/screens/agent_screen.dart';
 import 'package:unihub/screens/home_screen.dart';
 import 'package:unihub/screens/profile_screen.dart';
@@ -48,7 +49,9 @@ class _BottomNavState extends State<BottomNav> {
                     hoverColor: Colors.white,
                     icon: Icon(Icons.map)),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage()));
+                    },
                     style: ButtonStyle(
                         iconColor: WidgetStatePropertyAll(Colors.blueGrey)),
                     hoverColor: Colors.white,
