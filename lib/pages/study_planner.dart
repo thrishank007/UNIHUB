@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unihub/data/bottom_nav.dart';
+import 'package:unihub/pages/scheduled_planner.dart';
 
 class StudyPlanner extends StatefulWidget {
   const StudyPlanner({super.key});
@@ -213,7 +214,9 @@ class _StudyPlannerState extends State<StudyPlanner> {
                         height: 50,
                         width: double.infinity,
                         child: OutlinedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => ScheduledPlanner()));
+                          },
                           style: ButtonStyle(
                               backgroundColor: WidgetStatePropertyAll(
                                   const Color.fromARGB(255, 43, 52, 227))),
