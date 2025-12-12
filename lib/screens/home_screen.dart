@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:unihub/screens/agent_screen.dart';
-import 'package:unihub/screens/profile_screen.dart';
+import 'package:unihub/data/bottom_nav.dart';
+import 'package:unihub/pages/study_planner.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -155,44 +155,51 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisSpacing: 16.0,
                 padding: EdgeInsets.all(16.0),
                 childAspectRatio: 0.85,
+                shrinkWrap: true,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/grid_1.png'),
-                        fit: BoxFit.cover,
+                  GestureDetector(
+                    onDoubleTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => StudyPlanner())),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/grid_1.png'),
+                          fit: BoxFit.cover,
+                        ),
+                        borderRadius: BorderRadius.circular(35.0),
                       ),
-                      borderRadius: BorderRadius.circular(35.0),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 10),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: CircleAvatar(
-                                radius: 20.0,
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: 10),
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: CircleAvatar(
+                                  radius: 20.0,
+                                ),
                               ),
                             ),
-                          ),
-                          Text(
-                            'AI Study Planner',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
+                            Text(
+                              'AI Study Planner',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            'Automatically creates and manages your study schedule with smart conflict detection.',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
+                            const SizedBox(height: 10),
+                            Text(
+                              'Automatically creates and manages your study schedule with smart conflict detection.',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -313,64 +320,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            Center(
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 300,
-                  child: FloatingActionButton(
-                    onPressed: () {},
-                    backgroundColor: const Color.fromARGB(186, 69, 72, 79),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        IconButton(
-                            onPressed: () {},
-                            style: ButtonStyle(
-                              iconColor:
-                                  WidgetStatePropertyAll(Colors.blueGrey),
-                            ),
-                            hoverColor: Colors.white,
-                            icon: Icon(Icons.home)),
-                        IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const AgentScreen()));
-                            },
-                            style: ButtonStyle(
-                                iconColor:
-                                    WidgetStatePropertyAll(Colors.blueGrey)),
-                            hoverColor: Colors.white,
-                            icon: Icon(Icons.map)),
-                        IconButton(
-                            onPressed: () {},
-                            style: ButtonStyle(
-                                iconColor:
-                                    WidgetStatePropertyAll(Colors.blueGrey)),
-                            hoverColor: Colors.white,
-                            icon: Icon(Icons.settings)),
-                        IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ProfileScreen(),
-                                  ));
-                            },
-                            style: ButtonStyle(
-                                iconColor:
-                                    WidgetStatePropertyAll(Colors.blueGrey)),
-                            hoverColor: Colors.white,
-                            icon: Icon(Icons.person)),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            BottomNav(),
           ],
         ),
       ),
