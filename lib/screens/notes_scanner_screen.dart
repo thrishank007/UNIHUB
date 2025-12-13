@@ -302,7 +302,8 @@ class _NotesScannerScreenState extends State<NotesScannerScreen>
           ],
         ),
       ),
-      child: Row(
+      child: SingleChildScrollView(
+        child: Row(
         children: [
           Container(
             padding: const EdgeInsets.all(12),
@@ -348,21 +349,24 @@ class _NotesScannerScreenState extends State<NotesScannerScreen>
             ),
         ],
       ),
+      ),
     );
   }
 
   Widget _buildProgressSteps() {
-    final steps = ['Select', 'Transcribe', 'Convert', 'Export'];
+    final steps = ['Select', 'Draft', 'Convert', 'Export'];
     
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
-      child: Row(
+        child: Row(
         children: List.generate(steps.length, (index) {
           final isActive = index <= _currentStep;
           final isCurrent = index == _currentStep;
           
-          return Expanded(
-            child: Row(
+          return 
+             Flexible(
+              child: Row(
+              
               children: [
                 Container(
                   width: 32,
@@ -396,7 +400,7 @@ class _NotesScannerScreenState extends State<NotesScannerScreen>
                   ),
                 ),
                 const SizedBox(width: 6),
-                Text(
+              Text(
                   steps[index],
                   style: TextStyle(
                     color: isActive ? Colors.white : Colors.white38,
@@ -418,10 +422,11 @@ class _NotesScannerScreenState extends State<NotesScannerScreen>
                     ),
                   ),
               ],
-            ),
+              ),
           );
         }),
       ),
+      
     );
   }
 
