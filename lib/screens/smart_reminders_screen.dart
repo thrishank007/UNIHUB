@@ -1069,7 +1069,9 @@ class _AddReminderSheetState extends State<_AddReminderSheet> {
       ReminderCategory.exams,
     ];
 
-    return Row(
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
       children: categories.map((category) {
         final isSelected = _selectedCategory == category;
         return Padding(
@@ -1115,8 +1117,8 @@ class _AddReminderSheetState extends State<_AddReminderSheet> {
           ),
         );
       }).toList(),
-    );
-  }
+    ),
+  );}
 
   void _handleAdd() {
     if (_titleController.text.trim().isEmpty ||

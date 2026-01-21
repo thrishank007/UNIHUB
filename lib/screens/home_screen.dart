@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:unihub/data/bottom_nav.dart';
 import 'package:unihub/pages/study_planner.dart';
 import 'package:unihub/screens/agent_screen.dart';
-import 'package:unihub/screens/community_screen.dart';
 import 'package:unihub/screens/smart_reminders_screen.dart';
+import 'package:unihub/services/auth_service.dart';
+import 'package:unihub/screens/community_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,6 +14,17 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final _authService = AuthService();
+  
+  String get _userName {
+    final user = _authService.currentUser;
+    return user?.displayName ?? user?.email?.split('@')[0] ?? 'User';
+  }
+
+  String? get _userPhoto {
+    return _authService.currentUser?.photoURL;
+  }
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,34 +45,35 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
                   children: [
-                    const CircleAvatar(
+                    CircleAvatar(
                       backgroundColor: Colors.blueAccent,
                       radius: 28,
                       child: Text(
-                        'U',
-                        style: TextStyle(
+                        _userName[0].toUpperCase(),
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
+                        
                       ),
                     ),
                     const SizedBox(width: 12),
-                    const Expanded(
+                    Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Hello Student! 👋',
-                            style: TextStyle(
+                            'Hello $_userName! 👋',
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: 4),
-                          Text(
-                            'Dream Big, Work Smart',
+                          const SizedBox(height: 4),
+                          const Text(
+                            'Dream Big, Study Smart',
                             style: TextStyle(color: Colors.white70, fontSize: 14),
                           ),
                         ],
@@ -140,10 +153,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     description: 'Never miss deadlines with smart notifications.',
                     imagePath: 'assets/images/grid_3.png',
                     icon: Icons.notifications_active,
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const SmartRemindersScreen()),
-                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const SmartRemindersScreen()),
+                      );
+                    },
                   ),
                   _FeatureCard(
                     title: 'Exam Analyzer',
@@ -160,47 +175,42 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            // Community Button
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: GestureDetector(
-                onTap: () => Navigator.push(
+            const SizedBox(height: 10),
+           
+             GestureDetector(
+              onTap: () {
+                Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const CommunityScreen()),
+                );
+              },
+              child: Container(
+                width: double.infinity,
+                height: 80,
+
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(175, 12, 66, 111),
+                  borderRadius: BorderRadius.circular(35.0),
                 ),
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFF7C4DFF), Color(0xFF9C6AFF)],
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                    ),
-                    borderRadius: BorderRadius.circular(30),
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color(0xFF7C4DFF).withOpacity(0.5),
-                        blurRadius: 16,
-                        offset: const Offset(0, 4),
-                        spreadRadius: 0,
+                child: 
+                    Padding(
+                      padding: EdgeInsets.all(12.0),
+                      child: Center(
+                        child: Text(
+                        'Community',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ],
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Community',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 0.5,
                       ),
                     ),
-                  ),
-                ),
+                    
               ),
-            ),
+                
+              ),
+            
             
             const BottomNav(),
           ],
