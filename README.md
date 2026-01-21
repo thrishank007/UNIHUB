@@ -1,88 +1,67 @@
 # UniHub
 
-UniHub is a Flutter app that functions as an AI powered study assistant.
+UniHub is an AI-powered study assistant application built with Flutter. It combines task management, study planning, and AI assistance into a single campus companion app.
 
-It includes:
+## Features
 
-- AI chat assistant (Gemini) with document upload (PDF, images, text files)
-- AI study planner that generates a structured weekly plan
-- Notes scanner that transcribes handwritten notes from an image and turns them into structured notes (summary, key points, flashcards, quiz questions) with PDF export
-- Smart reminders UI
-- Community feed UI
+- **Authentication**: Secure login via Email/Password and Google Sign-In (Firebase Auth).
+- **AI Chat Assistant**: Integration with Gemini AI for educational Q&A. Supports text, images, and uploading PDF documents for context-aware answers.
+- **Study Planner**: Generates personalized weekly study schedules using AI based on user topics and hours.
+- **Notes Scanner**: Uses vision capabilities to scan handwritten notes, transcribe them, and generate summaries, flashcards, and quizzes. Can export results to PDF.
+- **Smart Reminders**: Specialized content-aware reminders system (UI implemented).
+- **Community Feed**: A space for students to share resources and updates (UI implemented).
+- **Profile Management**: User details and convenient account management.
 
-## What is implemented today
+## Tech Stack
 
-- Auth: Email/password and Google Sign-In via Firebase Auth
-- User profile: stored in Firestore on signup or first Google sign-in
-- Study plans: FirestoreService supports saving and streaming study plans
-- Chat: AI chat is implemented in the app UI
-- Community and Smart Reminders screens currently use in-app sample data (UI is real, persistence is not wired up)
+- **Flutter**: Dart-based cross-platform framework (Material Design 3).
+- **Firebase**:
+  - Auth: User identity management.
+  - Firestore: Cloud database for storing user profiles and study data.
+- **AI & ML**: Google Gemini (`google_generative_ai`) for generative text and vision tasks.
+- **PDF & File Handling**:
+  - `syncfusion_flutter_pdf`: For extracting text from uploaded PDFs.
+  - `pdf` & `printing`: For generating downloadable study guides.
+  - `file_picker` & `image_picker`: For local media selection.
+- **Markdown**: `flutter_markdown` for rendering rich AI responses.
 
-## Tech stack
+## Setup & Configuration
 
-- Flutter (Material)
-- Firebase: Auth, Firestore, Core
-- Gemini via `google_generative_ai`
-- File and media: `file_picker`, `image_picker`
-- PDF: `syncfusion_flutter_pdf` (text extraction), `pdf` + `printing` (export)
-- Markdown and math rendering in chat
+### Prerequisites
+- Flutter SDK (3.0.0 or higher)
+- Firebase Project with Auth and Firestore enabled
+- Gemini API Key
 
-## Setup
+### Installation
 
-Prerequisites:
+1. Clone the repository and install dependencies:
+   ```bash
+   flutter pub get
+   ```
 
-- Flutter SDK installed
-- A Firebase project (Auth enabled, Firestore enabled)
-- A Gemini API key
+2. **Firebase Configuration**:
+   - Ensure `android/app/google-services.json` is present.
+   - Ensure `ios/Runner/GoogleService-Info.plist` is present (for iOS).
 
-Install dependencies:
+3. **Keystore (Release Builds)**:
+   - Copy `android/keystore.properties.example` to `android/keystore.properties`.
+   - Fill in your signing key details.
 
+### Running the App
+
+This project uses compile-time variables for API keys to improve security. You **must** provide your Gemini API key when running or building the app.
+
+**Debug Mode:**
 ```bash
-flutter pub get
+flutter run --dart-define=GEMINI_API_KEY=your_actual_api_key_here
 ```
 
-Firebase:
-
-1. Configure Firebase for your platforms using FlutterFire (recommended).
-2. Ensure `android/app/google-services.json` is present.
-3. iOS uses `ios/Runner/GoogleService-Info.plist`. If it is missing, iOS builds will not have Firebase configured.
-
-Gemini:
-
-This repo expects the Gemini key at build time.
-
-Run the app:
-
+**Release Build:**
 ```bash
-flutter run --dart-define=GEMINI_API_KEY=YOUR_KEY
+flutter build apk --release --dart-define=GEMINI_API_KEY=your_actual_api_key_here
 ```
 
-Build a release APK:
-
-```bash
-flutter build apk --release --dart-define=GEMINI_API_KEY=YOUR_KEY
-```
-
-## Android release signing
-
-Release builds require a real signing key.
-
-1. Create a keystore (`.jks`).
-2. Fill `android/keystore.properties` with your keystore details.
-3. Build release.
-
-`android/keystore.properties` and keystore files should never be committed.
-
-## Project structure
-
-- `lib/main.dart`: app entry, Firebase init, auth wrapper
-- `lib/screens/`: main screens (Home, Login, AI Chat, Notes Scanner, Community, Profile)
-- `lib/pages/`: feature pages (Study Planner and results, focus session, settings)
-- `lib/services/`: Firebase auth, Firestore, Gemini, PDF generation
-- `lib/config/`: runtime and build-time configuration (Gemini key)
-
-## Notes for developers
-
-- Google Sign-In requires the correct SHA-1 fingerprint in Firebase Console for Android.
-- If Gemini is not configured, AI features will return a configuration error.
-- Firestore security rules are not stored in this repo. Lock down rules in Firebase Console before production.
+### Note on Security
+- API keys are no longer hardcoded in the source.
+- Debug logs are stripped in release mode.
+- Android backups are disabled to prevent data leakage.
