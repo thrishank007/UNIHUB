@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:unihub/firebase_options.dart';
 import 'package:unihub/screens/login_screen.dart';
@@ -13,11 +14,15 @@ void main() async {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    debugPrint('✅ Firebase initialized successfully');
+    if (kDebugMode) {
+      debugPrint('✅ Firebase initialized successfully');
+    }
   } catch (e, stackTrace) {
     // Log the full error for debugging
-    debugPrint('❌ Firebase initialization failed: $e');
-    debugPrint('Stack trace: $stackTrace');
+    if (kDebugMode) {
+      debugPrint('❌ Firebase initialization failed: $e');
+      debugPrint('Stack trace: $stackTrace');
+    }
     // Don't continue if Firebase fails - it's required for auth
     rethrow;
   }
@@ -58,9 +63,13 @@ class AuthWrapper extends StatelessWidget {
     // Check if Firebase is initialized
     try {
       final app = Firebase.app();
-      debugPrint('✅ Firebase app found: ${app.name}');
+      if (kDebugMode) {
+        debugPrint('✅ Firebase app found: ${app.name}');
+      }
     } catch (e) {
-      debugPrint('❌ Firebase app not found: $e');
+      if (kDebugMode) {
+        debugPrint('❌ Firebase app not found: $e');
+      }
       // Show error screen if Firebase not initialized
       return Scaffold(
         backgroundColor: const Color(0xFF0A022E),
@@ -142,7 +151,9 @@ class AuthWrapper extends StatelessWidget {
         },
       );
     } catch (e) {
-      debugPrint('❌ Auth service error: $e');
+      if (kDebugMode) {
+        debugPrint('❌ Auth service error: $e');
+      }
       // If auth service fails, show login screen anyway
       return const LoginScreen();
     }

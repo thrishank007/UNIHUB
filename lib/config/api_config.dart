@@ -1,9 +1,9 @@
 // API Configuration for UniHub
 
 class ApiConfig {
-  // Your Gemini API key
-  static const String geminiApiKey = 'AIzaSyAMWXoAfH4HQZyhHo_ek3S-Mbke6RY9QcE';
-  
-  // API key is configured (always true now since you have a real key)
+  // Gemini API key must be provided at build time:
+  // flutter run --dart-define=GEMINI_API_KEY=YOUR_KEY
+  static const String geminiApiKey = String.fromEnvironment('GEMINI_API_KEY');
+
   static bool get isGeminiConfigured => geminiApiKey.isNotEmpty;
 }
