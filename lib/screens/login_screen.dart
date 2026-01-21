@@ -318,7 +318,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         // Year dropdown (only for sign up)
                         if (_isSignUp)
                           DropdownButtonFormField<String>(
-                            value: _selectedYear,
+                            initialValue: _selectedYear,
                             decoration: InputDecoration(
                               labelText: 'Year (Optional)',
                               labelStyle: const TextStyle(color: Colors.white70),
