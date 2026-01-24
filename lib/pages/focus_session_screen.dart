@@ -249,7 +249,8 @@ class _FocusSessionScreenState extends State<FocusSessionScreen>
         ],
       ),
       body: SafeArea(
-        child: Column(
+        child: 
+        Column(
           children: [
             const SizedBox(height: 20),
             // Subject and focus type
@@ -581,4 +582,6 @@ class _FocusSessionScreenState extends State<FocusSessionScreen>
     );
   }
 }
+
+
 

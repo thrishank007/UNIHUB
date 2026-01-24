@@ -139,6 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        
         body: Stack(
           children: [
             Positioned.fill(
@@ -148,11 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             // Header
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              child: Padding(
+            Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
@@ -161,23 +158,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: const Color.fromARGB(179, 63, 62, 62),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: IconButton(
-                        icon: const Icon(Icons.arrow_back, color: Colors.white),
-                        onPressed: () => Navigator.maybePop(context),
-                      ),
+                      
                     ),
                     const SizedBox(width: 12),
-                    Text(
-                      _isSignUp ? 'Create Account' : 'Welcome back',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24,
-                      ),
-                    ),
+                    
                   ],
                 ),
-              ),
+              
             ),
             // Form
             Align(
@@ -331,7 +318,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         // Year dropdown (only for sign up)
                         if (_isSignUp)
                           DropdownButtonFormField<String>(
-                            value: _selectedYear,
+                            initialValue: _selectedYear,
                             decoration: InputDecoration(
                               labelText: 'Year (Optional)',
                               labelStyle: const TextStyle(color: Colors.white70),
@@ -350,7 +337,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             dropdownColor: const Color(0xFF0A022E),
                             style: const TextStyle(color: Colors.white),
-                            items: ['1st Year', '2nd Year', '3rd Year', '4th Year', 'Graduate']
+                            items: ['1st Year', '2nd Year', '3rd Year', '4th Year']
                                 .map((year) => DropdownMenuItem(
                                       value: year,
                                       child: Text(year),

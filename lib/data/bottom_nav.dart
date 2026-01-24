@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:unihub/screens/agent_screen.dart';
 import 'package:unihub/screens/home_screen.dart';
-import 'package:unihub/pages/study_planner.dart';
+import 'package:unihub/screens/profile_screen.dart';
+import 'package:unihub/screens/notes_scanner_screen.dart';
 
 class BottomNav extends StatelessWidget {
   const BottomNav({super.key});
@@ -43,21 +44,20 @@ class BottomNav extends StatelessWidget {
               ),
             ),
             _NavItem(
-              icon: Icons.calendar_month_rounded,
-              label: 'Planner',
+              icon: Icons.camera_alt_rounded,
+              label: 'Notes Scanner',
               onTap: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const StudyPlanner()),
+                MaterialPageRoute(builder: (context) => const NotesScannerScreen()),
               ),
             ),
             _NavItem(
               icon: Icons.person_rounded,
               label: 'Profile',
-              onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Profile - Coming soon!')),
-                );
-              },
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfileScreen()),
+              ),
             ),
           ],
         ),

@@ -7,6 +7,8 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+import java.util.Properties
+
 android {
     namespace = "com.example.unihub"
     compileSdk = flutter.compileSdkVersion
@@ -31,9 +33,27 @@ android {
         multiDexEnabled = true
     }
 
+    val keystoreProperties = Properties().apply {
+        val keystorePropertiesFile = rootProject.file("keystore.properties")
+        if (keystorePropertiesFile.exists()) {
+            load(keystorePropertiesFile.inputStream())
+        }
+    }
+
+    signingConfigs {
+        create("release") {
+            if (!keystoreProperties.isEmpty) {
+                keyAlias = keystoreProperties["keyAlias"] as String
+                keyPassword = keystoreProperties["keyPassword"] as String
+                storeFile = file(keystoreProperties["storeFile"] as String)
+                storePassword = keystoreProperties["storePassword"] as String
+            }
+        }
+    }
+
     buildTypes {
         release {
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 }

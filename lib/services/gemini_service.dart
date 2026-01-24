@@ -21,7 +21,7 @@ class GeminiService {
     if (_isInitialized) return;
     
     if (!ApiConfig.isGeminiConfigured) {
-      throw Exception('Please set your GEMINI_API_KEY in lib/config/api_config.dart');
+      throw Exception('Please set GEMINI_API_KEY via --dart-define at build time');
     }
 
     _model = GenerativeModel(
@@ -29,7 +29,7 @@ class GeminiService {
       apiKey: ApiConfig.geminiApiKey,
       generationConfig: GenerationConfig(
         temperature: 0.7,
-        maxOutputTokens: 2048,
+        maxOutputTokens: 8192,
       ),
       systemInstruction: Content.text(
         '''You are UniHub AI, a helpful academic assistant for college students. 
@@ -57,7 +57,7 @@ class GeminiService {
       return response.text ?? 'I couldn\'t process that. Please try again.';
     } catch (e) {
       if (e.toString().contains('API_KEY')) {
-        return 'Please configure your Gemini API key in lib/config/api_config.dart';
+        return 'Please configure GEMINI_API_KEY via --dart-define at build time';
       }
       return 'Error: $e';
     }
@@ -132,7 +132,7 @@ Rules:
       return response.text ?? 'Unable to generate study plan. Please try again.';
     } catch (e) {
       if (e.toString().contains('API_KEY')) {
-        return 'Please configure your Gemini API key in lib/config/api_config.dart';
+        return 'Please configure GEMINI_API_KEY via --dart-define at build time';
       }
       return 'Error generating study plan: $e';
     }
@@ -481,6 +481,9 @@ TRANSCRIPTION:
 $transcription
 
 IMPORTANT: Respond ONLY with a valid JSON object (no markdown, no explanation, just pure JSON).
+Ensure all strings are properly escaped. Do not use unescaped double quotes inside strings.
+Ensure there are no trailing commas.
+Ensure all newlines within strings are escaped as \\n.
 
 Use this exact JSON structure:
 {

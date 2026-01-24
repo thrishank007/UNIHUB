@@ -8,6 +8,11 @@
 .build/
 .buildlog/
 .history
+
+# Android signing
+android/keystore.properties
+android/*.jks
+android/*.keystore
 .svn/
 .swiftpm/
 migrate_working_dir/
